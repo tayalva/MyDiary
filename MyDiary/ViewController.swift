@@ -7,19 +7,22 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noEntryLabel: UILabel!
-    var testArray = ["Taylor", "Michelle", "Finley"]
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var entries: [Entry] = []
+    var test: [NSManagedObject] = []
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,12 +57,13 @@ class ViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "showDetail" {
         let indexPath = tableView.indexPathForSelectedRow
         let index = indexPath?.row
         let detailVC = segue.destination as! DetailViewController
         detailVC.index = index
-        
+        detailVC.entryArray = entries
+        }
     }
 
 
@@ -77,7 +81,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
-        let item = entries[indexPath.row].text
+        let item = entries.reversed()[indexPath.row].text
         
         cell.textLabel?.text = item
         return cell

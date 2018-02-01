@@ -31,7 +31,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_noimage" translatesAutoresizingMaskIntoConstraints="NO" id="NsD-Qu-c4o">
-                                                    <rect key="frame" x="300" y="19" width="65" height="65"/>
+                                                    <rect key="frame" x="278" y="19" width="65" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
@@ -57,6 +57,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PN5-6s-WXJ">
+                                <rect key="frame" x="0.0" y="199" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -66,9 +72,24 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="vgS-zK-fRQ">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="qEL-C0-bmf">
+                            <rect key="frame" x="116.5" y="22" width="142" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="February 1, 2018" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWz-Yd-cQg">
+                                    <rect key="frame" x="-28" y="-11" width="187" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="icn_write_post" width="50" id="qFU-uz-t9r">
                             <connections>
-                                <segue destination="Mxv-aO-mce" kind="show" id="W9e-dI-xb5"/>
+                                <segue destination="Mxv-aO-mce" kind="show" identifier="showDetailNew" id="W9e-dI-xb5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -171,6 +192,6 @@
         <image name="icn_write_post" width="12" height="12"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zte-QJ-XuR"/>
+        <segue reference="W9e-dI-xb5"/>
     </inferredMetricsTieBreakers>
 </document>
