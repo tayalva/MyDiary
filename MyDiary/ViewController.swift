@@ -9,21 +9,57 @@
 import UIKit
 
 class ViewController: UIViewController {
-    @IBOutlet weak var tableView: UITableView!
-
     
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var noEntryLabel: UILabel!
     var testArray = ["Taylor", "Michelle", "Finley"]
-    //var index: Int!
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var entries: [Entry] = []
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        fetchData()
+        ifNoEntries()
+    }
+    
+    func fetchData() {
+        do {
+            entries = try context.fetch(Entry.fetchRequest())
+            print(entries)
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("couldn't find yo data yo")
+        }
+    }
+    
+    func ifNoEntries() {
+        if entries == [] {
+            
+            noEntryLabel.isHidden = false
+            tableView.isHidden = true
+        } else {
+            
+            noEntryLabel.isHidden = true
+            tableView.isHidden = false
+        }
         
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        let indexPath = tableView.indexPathForSelectedRow
+        let index = indexPath?.row
+        let detailVC = segue.destination as! DetailViewController
+        detailVC.index = index
+        
     }
 
 
@@ -32,7 +68,7 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return testArray.count
+        return entries.count
     }
     
     
@@ -41,27 +77,31 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
-        let item = testArray[indexPath.row]
+        let item = entries[indexPath.row].text
         
         cell.textLabel?.text = item
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       //  index = indexPath.row
+    
         
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-   
-             let indexPath = tableView.indexPathForSelectedRow
-             let index = indexPath?.row
-             let detailVC = segue.destination as! DetailViewController
-             detailVC.index = index
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
             
-       
+            let item = self.entries[indexPath.row]
+            self.context.delete(item)
+            (UIApplication.shared.delegate as! AppDelegate).saveContext()
+            self.entries.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            self.ifNoEntries()
+        }
+        
+         return [delete]
+        
     }
-    
     
 }
 
