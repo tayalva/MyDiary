@@ -24,6 +24,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var diaryEntry: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var subjectTextField: UITextField!
+    @IBOutlet weak var imageViewerConstraint: NSLayoutConstraint!
     
     
     
@@ -45,14 +46,20 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     @IBAction func imageClicked(_ sender: Any) {
         
         print("image has been clicked!")
-        
+     /*
         photoPicker.allowsEditing = false
         photoPicker.sourceType = .photoLibrary
         photoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         present(photoPicker, animated: true, completion: nil)
         
+        */
+        
+        imageViewerConstraint.constant = 0
         
         
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
         
     }
     @IBAction func saveButton(_ sender: Any) {
