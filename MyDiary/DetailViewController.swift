@@ -16,7 +16,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     var index: Int!
     var entryArray: [Entry]!
     var isNewEntry = true
-  
+    let photoPicker = UIImagePickerController()
 
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -35,20 +35,34 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             isNewEntry = true
         } else {isNewEntry = false}
         
+        photoPicker.delegate = self
         diaryEntry?.delegate = self
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
 
     }
 
+    @IBAction func imageClicked(_ sender: Any) {
+        
+        print("image has been clicked!")
+        
+        photoPicker.allowsEditing = false
+        photoPicker.sourceType = .photoLibrary
+        photoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        present(photoPicker, animated: true, completion: nil)
+        
+        
+        
+        
+    }
     @IBAction func saveButton(_ sender: Any) {
-        guard let enteredText = diaryEntry?.text else {
+        guard let enteredText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
             return
         }
         
   
         
-        if enteredText.isEmpty {
+        if enteredText.isEmpty || subjectText.isEmpty {
             let alert = UIAlertController(title: "Boring day?", message: "Write something in order to save!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
                 
@@ -106,6 +120,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         subjectTextField.text = entryArray.reversed()[index].subject
         
     }
+    
+
 // dismisses the keyboard after pressing "return"
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -117,6 +133,20 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         return true
     }
     
-    
+}
 
+extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = chosenImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
 }
