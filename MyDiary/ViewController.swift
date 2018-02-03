@@ -29,7 +29,8 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         fetchData()
         ifNoEntries()
-        
+        tableView.estimatedRowHeight = 75
+        tableView.rowHeight = UITableViewAutomaticDimension
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
         
@@ -82,7 +83,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        self.tableView.rowHeight = 100
+        //self.tableView.rowHeight = 100
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
@@ -96,7 +97,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         
-        cell.textLabel?.text = item
+        cell.entryLabel?.text = item
         cell.dateLabel.text = "Date created: \(stringDate)"
         return cell
     }
