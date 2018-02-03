@@ -11,7 +11,8 @@ import UIKit
 class DiaryCustomCell: UITableViewCell {
 
     @IBOutlet weak var cellImage: UIImageView!
-
+    @IBOutlet weak var dateLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

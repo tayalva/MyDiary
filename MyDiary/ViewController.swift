@@ -97,7 +97,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         cell.textLabel?.text = item
-        cell.detailTextLabel?.text = stringDate
+        cell.dateLabel.text = "Date created: \(stringDate)"
         return cell
     }
     

@@ -34,10 +34,18 @@
                                                     <rect key="frame" x="278" y="19" width="65" height="65"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date Created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBl-8v-B5X">
+                                                    <rect key="frame" x="15" y="68" width="255" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="cellImage" destination="NsD-Qu-c4o" id="5xP-b5-lBx"/>
+                                            <outlet property="dateLabel" destination="pBl-8v-B5X" id="mBz-m6-ykK"/>
                                             <segue destination="Mxv-aO-mce" kind="show" identifier="showDetail" id="zte-QJ-XuR"/>
                                         </connections>
                                     </tableViewCell>
@@ -47,8 +55,14 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="ZVb-Tb-dJ7"/>
                                 </connections>
                             </tableView>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PN5-6s-WXJ">
+                                <rect key="frame" x="0.0" y="199" width="375" height="56"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any entries yet! Click the pencil on the top right to become a historian!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-ho-uD6">
-                                <rect key="frame" x="16" y="292.5" width="343" height="82"/>
+                                <rect key="frame" x="91" y="165" width="343" height="82"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="oCE-f7-SkR"/>
                                     <constraint firstAttribute="width" constant="343" id="tc8-xt-oof"/>
@@ -57,17 +71,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PN5-6s-WXJ">
-                                <rect key="frame" x="0.0" y="199" width="375" height="56"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="U0f-ho-uD6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5Kt-yb-7xE"/>
-                            <constraint firstItem="U0f-ho-uD6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ktK-EU-Gvj"/>
+                            <constraint firstItem="U0f-ho-uD6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="75" id="AeF-Ic-684"/>
+                            <constraint firstItem="U0f-ho-uD6" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-127.5" id="XVu-rH-TQb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
