@@ -82,8 +82,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
         let item = entries.reversed()[indexPath.row].text
+       // let date = entries.reversed()[indexPath.row].date
         
         cell.textLabel?.text = item
+        //cell.textLabel?.text = "\(date)"
         return cell
     }
     

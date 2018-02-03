@@ -42,6 +42,12 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             return
         }
         
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/YYYY"
+        let stringDate = formatter.string(from: date)
+        let currentDate = formatter.date(from: stringDate)
+        
         if enteredText.isEmpty {
             let alert = UIAlertController(title: "Boring day?", message: "Write something in order to save!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
@@ -58,7 +64,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             let context = appDelegate.persistentContainer.viewContext
             let newEntry = Entry(context: context)
             newEntry.text = entryText
-            
+            newEntry.date = currentDate
+            print(currentDate)
+                print("this is the date: \(stringDate)")
            appDelegate.saveContext()
             
             self.navigationController?.popViewController(animated: true)
