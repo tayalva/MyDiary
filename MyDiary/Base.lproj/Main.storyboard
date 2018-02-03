@@ -94,6 +94,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dateLabel" destination="xWz-Yd-cQg" id="xcv-FP-FGK"/>
                         <outlet property="noEntryLabel" destination="U0f-ho-uD6" id="D2a-r2-de3"/>
                         <outlet property="tableView" destination="tuX-x4-Ngf" id="pJf-rf-mJA"/>
                     </connections>
@@ -121,13 +122,6 @@
                                 <rect key="frame" x="16" y="77" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wednesday 31st January" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELW-Ma-dwJ">
-                                <rect key="frame" x="136" y="117" width="223" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-a4-UoY">
                                 <rect key="frame" x="159" y="498" width="200" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -152,12 +146,20 @@
                                     <color key="titleColor" red="0.1052362546" green="0.12526398899999999" blue="0.14195245500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wednesday 31st January" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELW-Ma-dwJ">
+                                <rect key="frame" x="136" y="111" width="223" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                         <viewLayoutGuide key="safeArea" id="9Om-BT-EKb"/>
                     </view>
                     <navigationItem key="navigationItem" id="fdJ-8g-Ffw"/>
                     <connections>
+                        <outlet property="dateLabel" destination="ELW-Ma-dwJ" id="aHa-8x-8RF"/>
                         <outlet property="diaryEntry" destination="jj3-gT-NhR" id="rl9-qm-h3y"/>
                         <outlet property="imageView" destination="MTQ-fm-Hhz" id="8qs-DW-LpS"/>
                         <outlet property="mapView" destination="AtJ-a4-UoY" id="FnJ-t4-G2b"/>

@@ -15,6 +15,7 @@
 		A64F672A201A9FE1007D259A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A64F6728201A9FE1007D259A /* LaunchScreen.storyboard */; };
 		A65AB91C202240F5009BFE3C /* DiaryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65AB91B202240F5009BFE3C /* DiaryCustomCell.swift */; };
 		A65AB91E20224226009BFE3C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65AB91D20224226009BFE3C /* DetailViewController.swift */; };
+		A696654C2025A2F900CB7B43 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696654B2025A2F900CB7B43 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		A64F672B201A9FE1007D259A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A65AB91B202240F5009BFE3C /* DiaryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCustomCell.swift; sourceTree = "<group>"; };
 		A65AB91D20224226009BFE3C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		A696654B2025A2F900CB7B43 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				A64F671C201A9FE1007D259A /* AppDelegate.swift */,
 				A64F671E201A9FE1007D259A /* ViewController.swift */,
+				A696654B2025A2F900CB7B43 /* DateFormatter.swift */,
 				A65AB91B202240F5009BFE3C /* DiaryCustomCell.swift */,
 				A65AB91D20224226009BFE3C /* DetailViewController.swift */,
 				A64F6720201A9FE1007D259A /* Main.storyboard */,
@@ -145,6 +148,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A696654C2025A2F900CB7B43 /* DateFormatter.swift in Sources */,
 				A65AB91C202240F5009BFE3C /* DiaryCustomCell.swift in Sources */,
 				A64F671F201A9FE1007D259A /* ViewController.swift in Sources */,
 				A65AB91E20224226009BFE3C /* DetailViewController.swift in Sources */,

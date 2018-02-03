@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noEntryLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var entries: [Entry] = []
@@ -22,12 +23,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
         fetchData()
         ifNoEntries()
+        
+        dateFormatter.dateStyle = .long
+        dateLabel.text = dateFormatter.string(from: Date())
+        
     }
     
     func fetchData() {
@@ -82,10 +87,17 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
         let item = entries.reversed()[indexPath.row].text
-       // let date = entries.reversed()[indexPath.row].date
+        let date = entries.reversed()[indexPath.row].date
+        
+       
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd/YYYY"
+        let stringDate = formatter.string(from: date!)
+        
+        
         
         cell.textLabel?.text = item
-        //cell.textLabel?.text = "\(date)"
+        cell.detailTextLabel?.text = stringDate
         return cell
     }
     

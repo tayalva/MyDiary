@@ -19,6 +19,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
   
 
     
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var diaryEntry: UITextView!
     @IBOutlet weak var mapView: MKMapView!
@@ -34,6 +35,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         } else {isNewEntry = false}
         
         diaryEntry?.delegate = self
+        dateFormatter.dateStyle = .long
+        dateLabel.text = dateFormatter.string(from: Date())
 
     }
 
@@ -42,11 +45,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/YYYY"
-        let stringDate = formatter.string(from: date)
-        let currentDate = formatter.date(from: stringDate)
+      //  let stringDate = dateFormatter.string(from: Date())
+        //let currentDate = dateFormatter.date(from: stringDate)
         
         if enteredText.isEmpty {
             let alert = UIAlertController(title: "Boring day?", message: "Write something in order to save!", preferredStyle: .alert)
@@ -64,9 +64,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             let context = appDelegate.persistentContainer.viewContext
             let newEntry = Entry(context: context)
             newEntry.text = entryText
-            newEntry.date = currentDate
-            print(currentDate)
-                print("this is the date: \(stringDate)")
+            newEntry.date = Date()
+                print("this is the date: \(newEntry.date)")
            appDelegate.saveContext()
             
             self.navigationController?.popViewController(animated: true)
