@@ -23,6 +23,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var diaryEntry: UITextView!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var subjectTextField: UITextField!
     
     
     
@@ -45,8 +46,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             return
         }
         
-      //  let stringDate = dateFormatter.string(from: Date())
-        //let currentDate = dateFormatter.date(from: stringDate)
+  
         
         if enteredText.isEmpty {
             let alert = UIAlertController(title: "Boring day?", message: "Write something in order to save!", preferredStyle: .alert)
@@ -55,7 +55,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             })
             self.present(alert, animated: true, completion: nil)
         } else {
-            guard let entryText = diaryEntry?.text else {
+            guard let entryText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
                 return
             }
             
@@ -65,18 +65,19 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             let newEntry = Entry(context: context)
             newEntry.text = entryText
             newEntry.date = Date()
-                print("this is the date: \(newEntry.date)")
+                newEntry.subject = subjectText
            appDelegate.saveContext()
             
             self.navigationController?.popViewController(animated: true)
                 
             } else {
                 
-                guard let entryText = diaryEntry.text else {
+                guard let entryText = diaryEntry.text, let subjectText = subjectTextField?.text else {
                     return
                 }
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                entryArray[index].text = entryText
+                entryArray.reversed()[index].text = entryText
+                entryArray.reversed()[index].subject = subjectText
                 appDelegate.saveContext()
                 self.navigationController?.popViewController(animated: true)
 
@@ -101,7 +102,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             print("good to go!")
             return
         }
-        diaryEntry.text = entryArray[index].text
+        diaryEntry.text = entryArray.reversed()[index].text
+        subjectTextField.text = entryArray.reversed()[index].subject
         
     }
 // dismisses the keyboard after pressing "return"

@@ -205,6 +205,7 @@
                         <outlet property="diaryEntry" destination="jj3-gT-NhR" id="rl9-qm-h3y"/>
                         <outlet property="imageView" destination="MTQ-fm-Hhz" id="8qs-DW-LpS"/>
                         <outlet property="mapView" destination="AtJ-a4-UoY" id="FnJ-t4-G2b"/>
+                        <outlet property="subjectTextField" destination="Rlg-MV-OVz" id="S28-sd-ngs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15H-F1-ihJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

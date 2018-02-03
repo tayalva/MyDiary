@@ -87,8 +87,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
-        let item = entries.reversed()[indexPath.row].text
+       // let item = entries.reversed()[indexPath.row].text
         let date = entries.reversed()[indexPath.row].date
+        let subject = entries.reversed()[indexPath.row].subject
         
        
         let formatter = DateFormatter()
@@ -97,7 +98,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         
-        cell.entryLabel?.text = item
+        cell.entryLabel?.text = subject
         cell.dateLabel.text = "Date created: \(stringDate)"
         return cell
     }
