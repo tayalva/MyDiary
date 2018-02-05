@@ -210,15 +210,21 @@
                                         <state key="normal" title="Camera Roll">
                                             <color key="titleColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="camerRollButton:" destination="Mxv-aO-mce" eventType="touchUpInside" id="PlZ-pE-Mwc"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNS-W9-VkU">
                                         <rect key="frame" x="18" y="55" width="298" height="80"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                        <state key="normal" title="Take a photo!">
+                                        <state key="normal" title="Take a photo">
                                             <color key="titleColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="cameraButton:" destination="Mxv-aO-mce" eventType="touchUpInside" id="ZNC-Aq-Nm3"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" alpha="0.89999997615814209" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nRk-Oh-6uR">
                                         <rect key="frame" x="18" y="292" width="298" height="80"/>
@@ -228,6 +234,9 @@
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="0.1176470588" green="0.14117647059999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="imageCancelButton:" destination="Mxv-aO-mce" eventType="touchUpInside" id="jth-K8-Val"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.30124276876449585" green="0.68632107973098755" blue="0.48459470272064209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -44,31 +44,49 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     }
 
     @IBAction func imageClicked(_ sender: Any) {
+        imageViewerConstraint.constant = 0
+        UIView.animate(withDuration: 0.3, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @IBAction func imageCancelButton(_ sender: Any) {
+        imageViewerConstraint.constant = 400
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
         
-        print("image has been clicked!")
-     /*
+    }
+    
+    @IBAction func camerRollButton(_ sender: Any) {
+        imageViewerConstraint.constant = 400
+        UIView.animate(withDuration: 0.2, animations: {
+            self.view.layoutIfNeeded()
+        })
         photoPicker.allowsEditing = false
         photoPicker.sourceType = .photoLibrary
         photoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
         present(photoPicker, animated: true, completion: nil)
-        
-        */
-        
-        imageViewerConstraint.constant = 0
-        
-        
-        UIView.animate(withDuration: 0.3, animations: {
+    }
+    
+    @IBAction func cameraButton(_ sender: Any) {
+        imageViewerConstraint.constant = 400
+        UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
+        photoPicker.allowsEditing = false
+        photoPicker.sourceType = UIImagePickerControllerSourceType.camera
+        photoPicker.cameraCaptureMode = .photo
+        photoPicker.modalPresentationStyle = .fullScreen
+        present(photoPicker, animated: true, completion: nil)
+        
         
     }
     @IBAction func saveButton(_ sender: Any) {
         guard let enteredText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
             return
         }
-        
-  
-        
+
         if enteredText.isEmpty || subjectText.isEmpty {
             let alert = UIAlertController(title: "Boring day?", message: "Write something in order to save!", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default) { action in
