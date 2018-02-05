@@ -87,18 +87,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
-       // let item = entries.reversed()[indexPath.row].text
         let date = entries.reversed()[indexPath.row].date
         let subject = entries.reversed()[indexPath.row].subject
-        
+        let imageData = entries.reversed()[indexPath.row].image
+        let image = UIImage(data: imageData!)
        
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/YYYY"
         let stringDate = formatter.string(from: date!)
         
         
-        
+        cell.cellImage.contentMode = .scaleAspectFill
         cell.entryLabel?.text = subject
+        cell.cellImage.image = image
         cell.dateLabel.text = "Date created: \(stringDate)"
         return cell
     }

@@ -17,7 +17,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     var entryArray: [Entry]!
     var isNewEntry = true
     let photoPicker = UIImagePickerController()
-
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -83,6 +82,9 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
     }
     @IBAction func saveButton(_ sender: Any) {
+        
+        
+        
         guard let enteredText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
             return
         }
@@ -94,17 +96,23 @@ class DetailViewController: UIViewController, UITextViewDelegate {
             })
             self.present(alert, animated: true, completion: nil)
         } else {
-            guard let entryText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
+            guard let entryText = diaryEntry?.text, let subjectText = subjectTextField?.text, let photo = imageView.image else {
                 return
             }
             
+            
+            let imageData: Data = UIImageJPEGRepresentation(photo, 1.0)!
+            
             if isNewEntry == true {
+    
+           
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let context = appDelegate.persistentContainer.viewContext
             let newEntry = Entry(context: context)
             newEntry.text = entryText
             newEntry.date = Date()
-                newEntry.subject = subjectText
+            newEntry.image = imageData
+            newEntry.subject = subjectText
            appDelegate.saveContext()
             
             self.navigationController?.popViewController(animated: true)
@@ -117,6 +125,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 entryArray.reversed()[index].text = entryText
                 entryArray.reversed()[index].subject = subjectText
+                entryArray.reversed()[index].image = imageData
                 appDelegate.saveContext()
                 self.navigationController?.popViewController(animated: true)
 
@@ -137,10 +146,15 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         mapView.layer.borderWidth = 1
         mapView.layer.borderColor = UIColor.darkGray.cgColor
         
-        guard let index = index, let entryArray = entryArray else {
+        guard let index = index, let entryArray = entryArray, let image = UIImage(data: entryArray.reversed()[index].image!) else {
             print("good to go!")
             return
         }
+        
+        
+        imageView.image = image
+       imageView.contentMode = .scaleAspectFill
+       
         diaryEntry.text = entryArray.reversed()[index].text
         subjectTextField.text = entryArray.reversed()[index].subject
         
