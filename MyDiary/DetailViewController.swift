@@ -114,7 +114,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
             self.lookUpCurrentLocation(placemarks, error: error)
         }
         mapView.isHidden = false
-        addLocationIcon.isHidden = true 
+        addLocationIcon.isHidden = true
      
         
     }
@@ -149,6 +149,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
             newEntry.date = Date()
             newEntry.image = imageData
             newEntry.subject = subjectText
+            newEntry.locationLat = locationPin.coordinate.latitude
+            newEntry.locationLong = locationPin.coordinate.longitude
            appDelegate.saveContext()
             
             self.navigationController?.popViewController(animated: true)
@@ -162,6 +164,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
                 entryArray.reversed()[index].text = entryText
                 entryArray.reversed()[index].subject = subjectText
                 entryArray.reversed()[index].image = imageData
+                entryArray.reversed()[index].locationLat = locationPin.coordinate.latitude
+                entryArray.reversed()[index].locationLong = locationPin.coordinate.longitude
                 appDelegate.saveContext()
                 self.navigationController?.popViewController(animated: true)
 
@@ -178,8 +182,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         imageView.layer.borderColor = UIColor.darkGray.cgColor
         imageView.layer.cornerRadius = imageView.bounds.height/2
         imageView.clipsToBounds = true
-      //  diaryEntry.layer.borderWidth = 1
-       // diaryEntry.layer.borderColor = UIColor.darkGray.cgColor
         mapView.layer.borderWidth = 1
         mapView.layer.borderColor = UIColor.darkGray.cgColor
         
@@ -190,11 +192,24 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         
         
         imageView.image = image
-       imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFill
        
         diaryEntry.text = entryArray.reversed()[index].text
         subjectTextField.text = entryArray.reversed()[index].subject
-        
+        let locationLat = entryArray.reversed()[index].locationLat
+        let locationLong = entryArray.reversed()[index].locationLong
+        if locationLat != 0.0 && locationLong != 0.0 {
+            
+            print("I have a stored location!")
+            
+            
+            let location = CLLocation(latitude: locationLat, longitude: locationLong)
+            geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+                self.lookUpCurrentLocation(placemarks, error: error)
+            }
+            mapView.isHidden = false
+            addLocationIcon.isHidden = true
+        }
     }
     
     func addLocation() {
