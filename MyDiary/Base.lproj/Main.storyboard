@@ -156,7 +156,7 @@
                                 </connections>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-a4-UoY">
-                                <rect key="frame" x="152" y="494" width="207" height="102"/>
+                                <rect key="frame" x="16" y="494" width="343" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHc-L5-iej">
@@ -172,7 +172,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uT4-3p-N0O">
-                                <rect key="frame" x="55" y="528" width="50" height="50"/>
+                                <rect key="frame" x="147" y="513" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" image="addLocationIcon">
@@ -247,12 +247,8 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_geolocate" translatesAutoresizingMaskIntoConstraints="NO" id="7JW-qe-EJk">
-                                <rect key="frame" x="152" y="601" width="15" height="15"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Huntington Beach, CA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eC-9I-Evx">
-                                <rect key="frame" x="172" y="598" width="174" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Add Location To Post" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eC-9I-Evx">
+                                <rect key="frame" x="83" y="598" width="208" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="10"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -268,10 +264,12 @@
                     </view>
                     <navigationItem key="navigationItem" id="fdJ-8g-Ffw"/>
                     <connections>
+                        <outlet property="addLocationIcon" destination="uT4-3p-N0O" id="x7A-Pw-Ka7"/>
                         <outlet property="dateLabel" destination="ELW-Ma-dwJ" id="aHa-8x-8RF"/>
                         <outlet property="diaryEntry" destination="jj3-gT-NhR" id="rl9-qm-h3y"/>
                         <outlet property="imageView" destination="MTQ-fm-Hhz" id="8qs-DW-LpS"/>
                         <outlet property="imageViewerConstraint" destination="Hi7-WL-Zjf" id="8zv-3D-OVo"/>
+                        <outlet property="locationLabel" destination="6eC-9I-Evx" id="X9E-fa-eF0"/>
                         <outlet property="mapView" destination="AtJ-a4-UoY" id="FnJ-t4-G2b"/>
                         <outlet property="subjectTextField" destination="Rlg-MV-OVz" id="S28-sd-ngs"/>
                     </connections>
@@ -306,7 +304,6 @@
     </scenes>
     <resources>
         <image name="addLocationIcon" width="190" height="190"/>
-        <image name="icn_geolocate" width="17" height="17"/>
         <image name="icn_noimage" width="47" height="47"/>
         <image name="icn_write_post" width="12" height="12"/>
     </resources>

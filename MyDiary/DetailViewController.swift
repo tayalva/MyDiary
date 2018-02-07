@@ -20,13 +20,17 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     let photoPicker = UIImagePickerController()
     let locationManager = CLLocationManager()
     let locationPin = MKPointAnnotation()
+    let geoCoder = CLGeocoder()
     
     
+ 
+    @IBOutlet weak var addLocationIcon: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var diaryEntry: UITextView!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var subjectTextField: UITextField!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var imageViewerConstraint: NSLayoutConstraint!
     
     
@@ -103,7 +107,14 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     @IBAction func addLocationButton(_ sender: Any) {
 
          addLocation()
+        
+        let location = CLLocation(latitude: locationPin.coordinate.latitude, longitude: locationPin.coordinate.longitude)
+        
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            self.lookUpCurrentLocation(placemarks, error: error)
+        }
         mapView.isHidden = false
+        addLocationIcon.isHidden = true 
      
         
     }
@@ -191,7 +202,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         mapView.delegate = self
         mapView.showsUserLocation = false
         mapView.userTrackingMode = .follow
-           locationManager.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         
     }
     
@@ -214,6 +225,21 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         mapView.addAnnotation(locationPin)
     }
     
+    func lookUpCurrentLocation(_ placemarks: [CLPlacemark]?, error: Error?) {
+        
+    
+                if error == nil {
+                    let firstLocation = placemarks?[0]
+                    let city = firstLocation?.locality
+                    let state = firstLocation?.administrativeArea
+                    self.locationLabel.text = "\(city!), \(state!)"
+   
+                    
+                } else {
+                    self.locationLabel.text = "No matching city found"
+                }
+        
+    }
     
 }
 
