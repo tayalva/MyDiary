@@ -147,7 +147,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="jj3-gT-NhR">
-                                <rect key="frame" x="16" y="191" width="343" height="299"/>
+                                <rect key="frame" x="0.0" y="191" width="375" height="299"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -162,13 +162,13 @@
                                 </connections>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-a4-UoY">
-                                <rect key="frame" x="159" y="498" width="200" height="115"/>
+                                <rect key="frame" x="136" y="498" width="223" height="115"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHc-L5-iej">
-                                <rect key="frame" x="16" y="621" width="343" height="38"/>
+                                <rect key="frame" x="0.0" y="621" width="375" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.35578557849999998" green="0.71963495020000001" blue="0.87009733919999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.39376378059387207" green="0.69037771224975586" blue="0.46291440725326538" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                 <state key="normal" title="Save">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -178,12 +178,15 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uT4-3p-N0O">
-                                <rect key="frame" x="16" y="544" width="135" height="22"/>
+                                <rect key="frame" x="41" y="530" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="  Add Location" image="icn_geolocate">
+                                <state key="normal" image="addLocationIcon">
                                     <color key="titleColor" red="0.1052362546" green="0.12526398899999999" blue="0.14195245500000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="addLocationButton:" destination="Mxv-aO-mce" eventType="touchUpInside" id="g8T-B8-dfs"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rlg-MV-OVz">
                                 <rect key="frame" x="136" y="147" width="223" height="30"/>
@@ -245,8 +248,13 @@
                                     <constraint firstAttribute="width" constant="335" id="vs2-xO-X3U"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65I-Lm-P1J">
+                                <rect key="frame" x="0.0" y="485" width="375" height="1"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7yP-Rd-yRb" firstAttribute="centerY" secondItem="8LL-hf-Jfz" secondAttribute="centerY" id="7Vg-GF-0xY"/>
                             <constraint firstItem="7yP-Rd-yRb" firstAttribute="centerX" secondItem="8LL-hf-Jfz" secondAttribute="centerX" constant="400" id="Hi7-WL-Zjf"/>
@@ -292,7 +300,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icn_geolocate" width="17" height="17"/>
+        <image name="addLocationIcon" width="190" height="190"/>
         <image name="icn_noimage" width="47" height="47"/>
         <image name="icn_write_post" width="12" height="12"/>
     </resources>

@@ -9,14 +9,17 @@
 import UIKit
 import MapKit
 import CoreData
+import CoreLocation
 
 
-class DetailViewController: UIViewController, UITextViewDelegate {
+class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
     
     var index: Int!
     var entryArray: [Entry]!
     var isNewEntry = true
     let photoPicker = UIImagePickerController()
+    let locationManager = CLLocationManager()
+    
     
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -39,7 +42,25 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         diaryEntry?.delegate = self
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
-
+        
+        
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+     
+        
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        mapView.userTrackingMode = .follow
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if CLLocationManager.authorizationStatus() == .notDetermined {
+            locationManager.requestAlwaysAuthorization()
+        } else if CLLocationManager.authorizationStatus() == .denied {
+            print("no location!")
+        } else if CLLocationManager.authorizationStatus() == .authorizedAlways {
+            locationManager.startUpdatingLocation()
+        }
     }
 
     @IBAction func imageClicked(_ sender: Any) {
@@ -81,10 +102,14 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         
         
     }
+    
+    @IBAction func addLocationButton(_ sender: Any) {
+        mapView.isHidden = false
+        
+    }
+    
     @IBAction func saveButton(_ sender: Any) {
-        
-        
-        
+
         guard let enteredText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
             return
         }
@@ -137,12 +162,13 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     func loadInfo() {
         
     //sets up some UI elements
+        mapView.isHidden = true
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.darkGray.cgColor
         imageView.layer.cornerRadius = imageView.bounds.height/2
         imageView.clipsToBounds = true
-        diaryEntry.layer.borderWidth = 1
-        diaryEntry.layer.borderColor = UIColor.darkGray.cgColor
+      //  diaryEntry.layer.borderWidth = 1
+       // diaryEntry.layer.borderColor = UIColor.darkGray.cgColor
         mapView.layer.borderWidth = 1
         mapView.layer.borderColor = UIColor.darkGray.cgColor
         
