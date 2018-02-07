@@ -39,36 +39,30 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Journal Entry" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D9s-q4-eeu">
-                                                    <rect key="frame" x="95" y="39" width="247" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <rect key="frame" x="88" y="37" width="247" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date Created" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBl-8v-B5X">
-                                                    <rect key="frame" x="95" y="10" width="239" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="2ph-6h-zno"/>
-                                                        <constraint firstAttribute="width" constant="239" id="xeZ-cX-uDO"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="thin" pointSize="10"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date written:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pBl-8v-B5X">
+                                                    <rect key="frame" x="88" y="74" width="239" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="D9s-q4-eeu" firstAttribute="top" secondItem="1d1-KK-qMi" secondAttribute="top" constant="39" id="48U-Ex-FOa"/>
-                                                <constraint firstAttribute="bottom" secondItem="D9s-q4-eeu" secondAttribute="bottom" constant="39.5" id="DRj-pb-DHe"/>
-                                                <constraint firstAttribute="trailing" secondItem="pBl-8v-B5X" secondAttribute="trailing" constant="8" id="DYJ-1N-351"/>
-                                                <constraint firstItem="D9s-q4-eeu" firstAttribute="leading" secondItem="NsD-Qu-c4o" secondAttribute="trailing" constant="15" id="Fzt-u4-8ta"/>
-                                                <constraint firstItem="pBl-8v-B5X" firstAttribute="leading" secondItem="NsD-Qu-c4o" secondAttribute="trailing" constant="15" id="aUg-a3-zAu"/>
+                                                <constraint firstAttribute="trailing" secondItem="D9s-q4-eeu" secondAttribute="trailing" constant="7" id="7TZ-6K-KUK"/>
+                                                <constraint firstItem="pBl-8v-B5X" firstAttribute="leading" secondItem="1d1-KK-qMi" secondAttribute="leading" constant="88" id="9Ef-Pb-PW4"/>
+                                                <constraint firstItem="D9s-q4-eeu" firstAttribute="top" secondItem="1d1-KK-qMi" secondAttribute="top" constant="37" id="OE1-YR-geT"/>
                                                 <constraint firstItem="NsD-Qu-c4o" firstAttribute="leading" secondItem="1d1-KK-qMi" secondAttribute="leadingMargin" id="bjM-SR-8Ko"/>
+                                                <constraint firstItem="pBl-8v-B5X" firstAttribute="top" secondItem="D9s-q4-eeu" secondAttribute="bottom" constant="13" id="g4b-lJ-ZxN"/>
                                                 <constraint firstItem="NsD-Qu-c4o" firstAttribute="top" secondItem="1d1-KK-qMi" secondAttribute="topMargin" constant="6" id="mee-ab-fZM"/>
-                                                <constraint firstItem="pBl-8v-B5X" firstAttribute="top" secondItem="1d1-KK-qMi" secondAttribute="top" constant="10" id="nmH-01-jJX"/>
+                                                <constraint firstAttribute="bottom" secondItem="D9s-q4-eeu" secondAttribute="bottom" constant="38.5" id="qPF-Zk-t19"/>
+                                                <constraint firstAttribute="trailing" secondItem="pBl-8v-B5X" secondAttribute="trailing" constant="15" id="rVU-9R-jJE"/>
+                                                <constraint firstItem="D9s-q4-eeu" firstAttribute="leading" secondItem="NsD-Qu-c4o" secondAttribute="trailing" constant="8" id="uHw-Pu-1h9"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="D9s-q4-eeu" secondAttribute="trailing" constant="33" id="oi8-2e-Zmp"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="cellImage" destination="NsD-Qu-c4o" id="5xP-b5-lBx"/>
                                             <outlet property="dateLabel" destination="pBl-8v-B5X" id="mBz-m6-ykK"/>
@@ -88,8 +82,8 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have any entries yet! Click the pencil on the top right to become a historian!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-ho-uD6">
-                                <rect key="frame" x="16" y="292.5" width="343" height="82"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="You don't have any entries yet! Click the pencil on the top right to become a historian!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0f-ho-uD6">
+                                <rect key="frame" x="16" y="93" width="343" height="82"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="82" id="ORJ-hL-DeY"/>
                                     <constraint firstAttribute="width" constant="343" id="g0G-YM-K59"/>
@@ -162,7 +156,7 @@
                                 </connections>
                             </imageView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="AtJ-a4-UoY">
-                                <rect key="frame" x="136" y="498" width="223" height="115"/>
+                                <rect key="frame" x="152" y="494" width="207" height="102"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHc-L5-iej">
@@ -178,7 +172,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uT4-3p-N0O">
-                                <rect key="frame" x="41" y="530" width="50" height="50"/>
+                                <rect key="frame" x="55" y="528" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" image="addLocationIcon">
@@ -253,6 +247,17 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_geolocate" translatesAutoresizingMaskIntoConstraints="NO" id="7JW-qe-EJk">
+                                <rect key="frame" x="152" y="601" width="15" height="15"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Huntington Beach, CA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eC-9I-Evx">
+                                <rect key="frame" x="172" y="598" width="174" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="ultraLight" pointSize="10"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -301,6 +306,7 @@
     </scenes>
     <resources>
         <image name="addLocationIcon" width="190" height="190"/>
+        <image name="icn_geolocate" width="17" height="17"/>
         <image name="icn_noimage" width="47" height="47"/>
         <image name="icn_write_post" width="12" height="12"/>
     </resources>

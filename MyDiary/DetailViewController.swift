@@ -19,6 +19,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     var isNewEntry = true
     let photoPicker = UIImagePickerController()
     let locationManager = CLLocationManager()
+    let locationPin = MKPointAnnotation()
     
     
     @IBOutlet weak var dateLabel: UILabel!
@@ -45,12 +46,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         
         
         locationManager.delegate = self
-        locationManager.requestWhenInUseAuthorization()
-     
-        
-        mapView.delegate = self
-        mapView.showsUserLocation = true
-        mapView.userTrackingMode = .follow
+        addLocation()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +101,10 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     }
     
     @IBAction func addLocationButton(_ sender: Any) {
+
+         addLocation()
         mapView.isHidden = false
+     
         
     }
     
@@ -186,6 +186,15 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         
     }
     
+    func addLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        mapView.delegate = self
+        mapView.showsUserLocation = false
+        mapView.userTrackingMode = .follow
+           locationManager.startUpdatingLocation()
+        
+    }
+    
 
 // dismisses the keyboard after pressing "return"
     
@@ -197,6 +206,14 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         }
         return true
     }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last! as CLLocation
+        locationPin.coordinate = location.coordinate
+        mapView.addAnnotation(locationPin)
+    }
+    
     
 }
 
