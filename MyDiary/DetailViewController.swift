@@ -21,6 +21,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     let locationManager = CLLocationManager()
     let locationPin = MKPointAnnotation()
     let geoCoder = CLGeocoder()
+    var wantsLocation: Bool = false
     
     
  
@@ -50,7 +51,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         
         
         locationManager.delegate = self
-        addLocation()
+      addLocation()
        
     }
     
@@ -105,9 +106,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     }
     
     @IBAction func addLocationButton(_ sender: Any) {
-
+         wantsLocation = true
          addLocation()
-        
         let location = CLLocation(latitude: locationPin.coordinate.latitude, longitude: locationPin.coordinate.longitude)
         
         geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
@@ -149,8 +149,11 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
             newEntry.date = Date()
             newEntry.image = imageData
             newEntry.subject = subjectText
+                
+                if wantsLocation == true {
             newEntry.locationLat = locationPin.coordinate.latitude
             newEntry.locationLong = locationPin.coordinate.longitude
+                }
            appDelegate.saveContext()
             
             self.navigationController?.popViewController(animated: true)
@@ -198,6 +201,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         subjectTextField.text = entryArray.reversed()[index].subject
         let locationLat = entryArray.reversed()[index].locationLat
         let locationLong = entryArray.reversed()[index].locationLong
+        print("\(locationLat), \(locationLong)")
         if locationLat != 0.0 && locationLong != 0.0 {
             
             print("I have a stored location!")
