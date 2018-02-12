@@ -22,6 +22,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     let locationPin = MKPointAnnotation()
     let geoCoder = CLGeocoder()
     var wantsLocation: Bool = false
+
     
     
  
@@ -38,24 +39,29 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loadInfo()
         
-        if diaryEntry.text.isEmpty {
-            isNewEntry = true
-        } else {isNewEntry = false}
+      
         
         photoPicker.delegate = self
         diaryEntry?.delegate = self
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
-        
-        
         locationManager.delegate = self
-      addLocation()
+        mapView.delegate = self
+        
+        
+        
+        loadInfo()
+        
+      //addLocation()
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if diaryEntry.text.isEmpty {
+            isNewEntry = true
+        } else {isNewEntry = false}
+        
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
         } else if CLLocationManager.authorizationStatus() == .denied {
@@ -108,8 +114,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     @IBAction func addLocationButton(_ sender: Any) {
          wantsLocation = true
          addLocation()
-        let location = CLLocation(latitude: locationPin.coordinate.latitude, longitude: locationPin.coordinate.longitude)
         
+        
+        let location = CLLocation(latitude: locationPin.coordinate.latitude, longitude: locationPin.coordinate.longitude)
         geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
             self.lookUpCurrentLocation(placemarks, error: error)
         }
@@ -120,7 +127,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     }
     
     @IBAction func saveButton(_ sender: Any) {
-
+        
         guard let enteredText = diaryEntry?.text, let subjectText = subjectTextField?.text else {
             return
         }
@@ -174,7 +181,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
 
             }
         }
-        
+        //locationManager.stopUpdatingLocation()
     }
     
     func loadInfo() {
@@ -189,7 +196,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         mapView.layer.borderColor = UIColor.darkGray.cgColor
         
         guard let index = index, let entryArray = entryArray, let image = UIImage(data: entryArray.reversed()[index].image!) else {
-            print("good to go!")
+            print("new entry!")
             return
         }
         
@@ -202,27 +209,38 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         let locationLat = entryArray.reversed()[index].locationLat
         let locationLong = entryArray.reversed()[index].locationLong
         print("\(locationLat), \(locationLong)")
+        
+        
         if locationLat != 0.0 && locationLong != 0.0 {
-            
+
             print("I have a stored location!")
-            
-            
             let location = CLLocation(latitude: locationLat, longitude: locationLong)
+            
+            
+            locationPin.coordinate = CLLocationCoordinate2D(latitude: locationLat, longitude: locationLong)
+            let region = MKCoordinateRegion(center: locationPin.coordinate, span: MKCoordinateSpanMake(0.01, 0.01))
+            mapView.addAnnotation(locationPin)
+            mapView.setRegion(region, animated: true)
             geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
                 self.lookUpCurrentLocation(placemarks, error: error)
             }
+            
+            
             mapView.isHidden = false
             addLocationIcon.isHidden = true
+        } else if locationLat == 0.0 && locationLong == 0.0 {
+            
+            mapView.isHidden = true
+            addLocationIcon.isHidden = false
+            locationLabel.text = "Add location to entry"
         }
     }
     
     func addLocation() {
         locationManager.requestWhenInUseAuthorization()
-        mapView.delegate = self
         mapView.showsUserLocation = false
         mapView.userTrackingMode = .follow
         locationManager.startUpdatingLocation()
-        
     }
     
 
@@ -239,6 +257,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+       
+        locationManager.stopUpdatingLocation()
         let location = locations.last! as CLLocation
         locationPin.coordinate = location.coordinate
         mapView.addAnnotation(locationPin)
@@ -246,12 +266,19 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     
     func lookUpCurrentLocation(_ placemarks: [CLPlacemark]?, error: Error?) {
         
-    
+        print(placemarks![0])
+        
                 if error == nil {
+                    
                     let firstLocation = placemarks?[0]
-                    let city = firstLocation?.locality
-                    let state = firstLocation?.administrativeArea
-                    self.locationLabel.text = "\(city!), \(state!)"
+                    
+
+                    guard let city = firstLocation?.locality, let state = firstLocation?.administrativeArea else {
+                        self.locationLabel.text = "No matching city found"
+                        return
+                    }
+                    
+                    self.locationLabel.text = "\(city), \(state)"
    
                     
                 } else {

@@ -17,7 +17,8 @@ class ViewController: UIViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var entries: [Entry] = []
-    var test: [NSManagedObject] = []
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredEntries = [Entry]()
    
     
     override func viewDidLoad() {
@@ -33,6 +34,13 @@ class ViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Entries"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        tableView.tableHeaderView = searchController.searchBar
         
     }
     
@@ -124,5 +132,25 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
     }
     
+}
+
+extension ViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    func searchBarIsEmpty() -> Bool {
+        
+        return searchController.searchBar.text?.isEmpty ?? true
+    }
+    
+    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+        filteredEntries = entries.filter({( entry : Entry ) -> Bool in
+            return (entry.subject?.lowercased().contains(searchText.lowercased()))!
+        })
+        tableView.reloadData()
+    }
 }
 
