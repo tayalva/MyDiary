@@ -14,15 +14,29 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noEntryLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+
+    
+    
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var entries: [Entry] = []
-    let searchController = UISearchController(searchResultsController: nil)
+   // let searchController = UISearchController(searchResultsController: nil)
     var filteredEntries = [Entry]()
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Entries"
+        tableView.tableHeaderView = searchController.searchBar
+        definesPresentationContext = true
         
        
     }
@@ -35,12 +49,7 @@ class ViewController: UIViewController {
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
         
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Entries"
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
-        tableView.tableHeaderView = searchController.searchBar
+       
         
     }
     
@@ -76,7 +85,14 @@ class ViewController: UIViewController {
         let index = indexPath?.row
         let detailVC = segue.destination as! DetailViewController
         detailVC.index = index
-        detailVC.entryArray = entries
+            if isFiltering() {
+                
+                detailVC.entryArray = filteredEntries
+            } else {
+                
+                detailVC.entryArray = entries
+            }
+        
         }
     }
 
@@ -86,6 +102,10 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if isFiltering() {
+            return filteredEntries.count
+        }
         return entries.count
     }
     
@@ -96,27 +116,26 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
         let date = entries.reversed()[indexPath.row].date
-        let subject = entries.reversed()[indexPath.row].subject
-        let imageData = entries.reversed()[indexPath.row].image
-        let image = UIImage(data: imageData!)
-       
+
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/YYYY"
         let stringDate = formatter.string(from: date!)
+        let entry: Entry
+        if isFiltering() {
+            entry = filteredEntries.reversed()[indexPath.row]
+        } else {
+            entry = entries.reversed()[indexPath.row]
+        }
         
         
         cell.cellImage.contentMode = .scaleAspectFill
-        cell.entryLabel?.text = subject
-        cell.cellImage.image = image
+        cell.entryLabel?.text = entry.subject
+        cell.cellImage.image = UIImage(data: entry.image!)
         cell.dateLabel.text = "Date created: \(stringDate)"
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-        
-    }
-    
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
             
@@ -134,6 +153,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
+
+
 extension ViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
@@ -146,11 +167,16 @@ extension ViewController: UISearchResultsUpdating {
         return searchController.searchBar.text?.isEmpty ?? true
     }
     
-    func filterContentForSearchText(_ searchText: String, scope: String = "All") {
+    func filterContentForSearchText(_ searchText: String) {
         filteredEntries = entries.filter({( entry : Entry ) -> Bool in
-            return (entry.subject?.lowercased().contains(searchText.lowercased()))!
+          
+            return entry.subject!.lowercased().contains(searchText.lowercased())
         })
         tableView.reloadData()
+    }
+    
+    func isFiltering() -> Bool {
+        return searchController.isActive && !searchBarIsEmpty()
     }
 }
 
