@@ -29,16 +29,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Entries"
-        tableView.tableHeaderView = searchController.searchBar
-        definesPresentationContext = true
-        
-       
+        setUpSearchBar()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,10 +40,10 @@ class ViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         dateFormatter.dateStyle = .long
         dateLabel.text = dateFormatter.string(from: Date())
-        
-       
-        
+      
     }
+    
+  
     
     func fetchData() {
         do {
@@ -92,7 +84,7 @@ class ViewController: UIViewController {
                 
                 detailVC.entryArray = entries
             }
-        
+            
         }
     }
 
@@ -135,6 +127,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //searchController.isActive = false
+    }
+    
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let delete = UITableViewRowAction(style: .default, title: "Delete") { (action, indexPath) in
@@ -149,6 +145,19 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         
          return [delete]
         
+    }
+    
+    func setUpSearchBar() {
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Entries"
+        searchController.searchBar.searchBarStyle = .minimal
+        tableView.tableHeaderView = searchController.searchBar
+        
+        self.definesPresentationContext = true
     }
     
 }
