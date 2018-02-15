@@ -86,6 +86,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="JournalLogo" translatesAutoresizingMaskIntoConstraints="NO" id="flk-se-QFd">
+                                <rect key="frame" x="54" y="74" width="266" height="121"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -297,6 +301,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="JournalLogo" width="355" height="142"/>
         <image name="addLocationIcon" width="190" height="190"/>
         <image name="icn_noimage" width="47" height="47"/>
         <image name="icn_write_post" width="12" height="12"/>

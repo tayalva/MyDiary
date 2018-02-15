@@ -16,7 +16,18 @@
 		A65AB91C202240F5009BFE3C /* DiaryCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65AB91B202240F5009BFE3C /* DiaryCustomCell.swift */; };
 		A65AB91E20224226009BFE3C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A65AB91D20224226009BFE3C /* DetailViewController.swift */; };
 		A696654C2025A2F900CB7B43 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696654B2025A2F900CB7B43 /* DateFormatter.swift */; };
+		A6C3D191203500F600AD988A /* MyDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3D190203500F600AD988A /* MyDiaryTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A6C3D193203500F600AD988A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A64F6711201A9FE1007D259A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A64F6718201A9FE1007D259A;
+			remoteInfo = MyDiary;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		A64F6719201A9FE1007D259A /* MyDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,10 +41,20 @@
 		A65AB91B202240F5009BFE3C /* DiaryCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryCustomCell.swift; sourceTree = "<group>"; };
 		A65AB91D20224226009BFE3C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A696654B2025A2F900CB7B43 /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		A6C3D18E203500F600AD988A /* MyDiaryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDiaryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6C3D190203500F600AD988A /* MyDiaryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryTests.swift; sourceTree = "<group>"; };
+		A6C3D192203500F600AD988A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A64F6716201A9FE1007D259A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6C3D18B203500F600AD988A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				A64F671B201A9FE1007D259A /* MyDiary */,
+				A6C3D18F203500F600AD988A /* MyDiaryTests */,
 				A64F671A201A9FE1007D259A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				A64F6719201A9FE1007D259A /* MyDiary.app */,
+				A6C3D18E203500F600AD988A /* MyDiaryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,6 +97,15 @@
 				A64F6723201A9FE1007D259A /* MyDiary.xcdatamodeld */,
 			);
 			path = MyDiary;
+			sourceTree = "<group>";
+		};
+		A6C3D18F203500F600AD988A /* MyDiaryTests */ = {
+			isa = PBXGroup;
+			children = (
+				A6C3D190203500F600AD988A /* MyDiaryTests.swift */,
+				A6C3D192203500F600AD988A /* Info.plist */,
+			);
+			path = MyDiaryTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +128,24 @@
 			productReference = A64F6719201A9FE1007D259A /* MyDiary.app */;
 			productType = "com.apple.product-type.application";
 		};
+		A6C3D18D203500F600AD988A /* MyDiaryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A6C3D195203500F600AD988A /* Build configuration list for PBXNativeTarget "MyDiaryTests" */;
+			buildPhases = (
+				A6C3D18A203500F600AD988A /* Sources */,
+				A6C3D18B203500F600AD988A /* Frameworks */,
+				A6C3D18C203500F600AD988A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A6C3D194203500F600AD988A /* PBXTargetDependency */,
+			);
+			name = MyDiaryTests;
+			productName = MyDiaryTests;
+			productReference = A6C3D18E203500F600AD988A /* MyDiaryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -109,6 +159,11 @@
 					A64F6718201A9FE1007D259A = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					A6C3D18D203500F600AD988A = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A64F6718201A9FE1007D259A;
 					};
 				};
 			};
@@ -126,6 +181,7 @@
 			projectRoot = "";
 			targets = (
 				A64F6718201A9FE1007D259A /* MyDiary */,
+				A6C3D18D203500F600AD988A /* MyDiaryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -138,6 +194,13 @@
 				A64F672A201A9FE1007D259A /* LaunchScreen.storyboard in Resources */,
 				A64F6727201A9FE1007D259A /* Assets.xcassets in Resources */,
 				A64F6722201A9FE1007D259A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A6C3D18C203500F600AD988A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +220,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A6C3D18A203500F600AD988A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6C3D191203500F600AD988A /* MyDiaryTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A6C3D194203500F600AD988A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A64F6718201A9FE1007D259A /* MyDiary */;
+			targetProxy = A6C3D193203500F600AD988A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A64F6720201A9FE1007D259A /* Main.storyboard */ = {
@@ -318,6 +397,38 @@
 			};
 			name = Release;
 		};
+		A6C3D196203500F600AD988A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KNEDT6Y55K;
+				INFOPLIST_FILE = MyDiaryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TaylorSmith.MyDiaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyDiary.app/MyDiary";
+			};
+			name = Debug;
+		};
+		A6C3D197203500F600AD988A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = KNEDT6Y55K;
+				INFOPLIST_FILE = MyDiaryTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.TaylorSmith.MyDiaryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MyDiary.app/MyDiary";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -335,6 +446,15 @@
 			buildConfigurations = (
 				A64F672F201A9FE1007D259A /* Debug */,
 				A64F6730201A9FE1007D259A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A6C3D195203500F600AD988A /* Build configuration list for PBXNativeTarget "MyDiaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A6C3D196203500F600AD988A /* Debug */,
+				A6C3D197203500F600AD988A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
