@@ -12,7 +12,7 @@ import CoreData
 import CoreLocation
 
 
-class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate {
+class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDelegate, CLLocationManagerDelegate, UITextFieldDelegate {
     
     var index: Int!
     var entryArray: [Entry]!
@@ -41,7 +41,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         super.viewDidLoad()
         
       
-        
+        subjectTextField.delegate = self
         photoPicker.delegate = self
         diaryEntry?.delegate = self
         dateFormatter.dateStyle = .long
@@ -53,13 +53,14 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         
         loadInfo()
         
-      //addLocation()
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if diaryEntry.text.isEmpty {
             isNewEntry = true
+            diaryEntry.text = "What happened today?"
+            diaryEntry.textColor = UIColor.lightGray
         } else {isNewEntry = false}
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
@@ -187,6 +188,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     func loadInfo() {
         
     //sets up some UI elements
+        
         mapView.isHidden = true
         imageView.layer.borderWidth = 1
         imageView.layer.borderColor = UIColor.darkGray.cgColor
@@ -255,6 +257,18 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         return true
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false 
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
        
@@ -263,6 +277,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         locationPin.coordinate = location.coordinate
         mapView.addAnnotation(locationPin)
     }
+    
     
     func lookUpCurrentLocation(_ placemarks: [CLPlacemark]?, error: Error?) {
         
