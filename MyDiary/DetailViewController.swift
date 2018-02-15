@@ -115,12 +115,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     @IBAction func addLocationButton(_ sender: Any) {
          wantsLocation = true
          addLocation()
-        
-        
-        let location = CLLocation(latitude: locationPin.coordinate.latitude, longitude: locationPin.coordinate.longitude)
-        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
-            self.lookUpCurrentLocation(placemarks, error: error)
-        }
         mapView.isHidden = false
         addLocationIcon.isHidden = true
      
@@ -210,7 +204,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         subjectTextField.text = entryArray.reversed()[index].subject
         let locationLat = entryArray.reversed()[index].locationLat
         let locationLong = entryArray.reversed()[index].locationLong
-        print("\(locationLat), \(locationLong)")
         
         
         if locationLat != 0.0 && locationLong != 0.0 {
@@ -243,6 +236,12 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         mapView.showsUserLocation = false
         mapView.userTrackingMode = .follow
         locationManager.startUpdatingLocation()
+        
+        let location = CLLocation(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
+        geoCoder.reverseGeocodeLocation(location) { (placemarks, error) in
+            self.lookUpCurrentLocation(placemarks, error: error)
+        }
+        
     }
     
 

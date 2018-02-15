@@ -156,10 +156,13 @@
                                     <outlet property="delegate" destination="Mxv-aO-mce" id="XRx-nz-FQB"/>
                                 </connections>
                             </textView>
-                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icn_noimage" translatesAutoresizingMaskIntoConstraints="NO" id="MTQ-fm-Hhz">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icn_noimage" translatesAutoresizingMaskIntoConstraints="NO" id="MTQ-fm-Hhz">
                                 <rect key="frame" x="16" y="77" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="Ajv-gG-otv"/>
+                                    <constraint firstAttribute="width" constant="100" id="Xxi-gb-rIn"/>
+                                </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="8he-vW-sub" appends="YES" id="QWP-11-l3B"/>
                                 </connections>
@@ -191,16 +194,14 @@
                                     <action selector="addLocationButton:" destination="Mxv-aO-mce" eventType="touchUpInside" id="g8T-B8-dfs"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rlg-MV-OVz">
-                                <rect key="frame" x="136" y="147" width="223" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Subject" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rlg-MV-OVz">
+                                <rect key="frame" x="136" y="129" width="223" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wednesday 31st January" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELW-Ma-dwJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Wednesday 31st January" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ELW-Ma-dwJ">
                                 <rect key="frame" x="136" y="97" width="223" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -266,8 +267,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="ELW-Ma-dwJ" firstAttribute="leading" secondItem="MTQ-fm-Hhz" secondAttribute="trailing" constant="20" id="4r3-Yp-NyA"/>
                             <constraint firstItem="7yP-Rd-yRb" firstAttribute="centerY" secondItem="8LL-hf-Jfz" secondAttribute="centerY" id="7Vg-GF-0xY"/>
+                            <constraint firstItem="9Om-BT-EKb" firstAttribute="trailing" secondItem="ELW-Ma-dwJ" secondAttribute="trailing" constant="16" id="Dcl-Qf-xUU"/>
                             <constraint firstItem="7yP-Rd-yRb" firstAttribute="centerX" secondItem="8LL-hf-Jfz" secondAttribute="centerX" constant="400" id="Hi7-WL-Zjf"/>
+                            <constraint firstItem="Rlg-MV-OVz" firstAttribute="top" secondItem="ELW-Ma-dwJ" secondAttribute="bottom" constant="17" id="Sj1-8f-d68"/>
+                            <constraint firstItem="Rlg-MV-OVz" firstAttribute="top" secondItem="ELW-Ma-dwJ" secondAttribute="bottom" constant="8" id="dWt-nk-KKK"/>
+                            <constraint firstItem="MTQ-fm-Hhz" firstAttribute="leading" secondItem="9Om-BT-EKb" secondAttribute="leading" constant="16" id="dad-XU-B3r"/>
+                            <constraint firstItem="9Om-BT-EKb" firstAttribute="trailing" secondItem="Rlg-MV-OVz" secondAttribute="trailing" constant="16" id="ehq-4T-9S6"/>
+                            <constraint firstItem="ELW-Ma-dwJ" firstAttribute="top" secondItem="9Om-BT-EKb" secondAttribute="top" constant="33" id="fhb-OR-BPs"/>
+                            <constraint firstItem="Rlg-MV-OVz" firstAttribute="leading" secondItem="MTQ-fm-Hhz" secondAttribute="trailing" constant="20" id="keY-XI-1r5"/>
+                            <constraint firstItem="MTQ-fm-Hhz" firstAttribute="top" secondItem="9Om-BT-EKb" secondAttribute="top" constant="13" id="lQE-sC-Fx3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9Om-BT-EKb"/>
                     </view>
