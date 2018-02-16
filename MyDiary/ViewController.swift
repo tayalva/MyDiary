@@ -14,16 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noEntryLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-
-    
-    
-    
     let searchController = UISearchController(searchResultsController: nil)
-    
-    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var entries: [Entry] = []
-   // let searchController = UISearchController(searchResultsController: nil)
     var filteredEntries = [Entry]()
    
     
@@ -44,6 +37,7 @@ class ViewController: UIViewController {
     }
     
   
+// fetches data to populate the table view
     
     func fetchData() {
         do {
@@ -70,6 +64,7 @@ class ViewController: UIViewController {
         
     }
     
+// segue that passes on appropriate info to the detail controller
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
@@ -91,6 +86,8 @@ class ViewController: UIViewController {
 
 }
 
+//all my tableView methods are here
+
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -103,9 +100,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //self.tableView.rowHeight = 100
-        
-        
+ 
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! DiaryCustomCell
         let date = entries.reversed()[indexPath.row].date
 
@@ -127,9 +122,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //searchController.isActive = false
-    }
     
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -146,6 +138,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
          return [delete]
         
     }
+// sets up the search bar
     
     func setUpSearchBar() {
         
@@ -162,7 +155,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 
-
+// updates the table view as you type and filters results
 
 extension ViewController: UISearchResultsUpdating {
     
