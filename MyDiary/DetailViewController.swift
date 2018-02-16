@@ -49,7 +49,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         locationManager.delegate = self
         mapView.delegate = self
         
-        
+        if diaryEntry.text.isEmpty {
+            isNewEntry = true
+        } else {isNewEntry = false}
         
         loadInfo()
         
@@ -57,11 +59,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        if diaryEntry.text.isEmpty {
-            isNewEntry = true
-            diaryEntry.text = "What happened today?"
-            diaryEntry.textColor = UIColor.lightGray
-        } else {isNewEntry = false}
+
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
@@ -94,7 +92,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         })
         photoPicker.allowsEditing = false
         photoPicker.sourceType = .photoLibrary
-        photoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
+        photoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
         present(photoPicker, animated: true, completion: nil)
     }
     
@@ -103,12 +101,29 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         UIView.animate(withDuration: 0.2, animations: {
             self.view.layoutIfNeeded()
         })
+        
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
         photoPicker.allowsEditing = false
         photoPicker.sourceType = UIImagePickerControllerSourceType.camera
         photoPicker.cameraCaptureMode = .photo
         photoPicker.modalPresentationStyle = .fullScreen
         present(photoPicker, animated: true, completion: nil)
-        
+        } else {
+            
+            let alertVC = UIAlertController(
+                title: "No Camera",
+                message: "Sorry, this device has no camera",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(
+                title: "OK",
+                style:.default,
+                handler: nil)
+            alertVC.addAction(okAction)
+            present(
+                alertVC,
+                animated: true,
+                completion: nil)
+        }
         
     }
     
@@ -261,13 +276,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         return false 
     }
     
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-    
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
        
@@ -306,10 +314,29 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
 extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        imageView.contentMode = .scaleAspectFill
-        imageView.image = chosenImage
-        dismiss(animated: true, completion: nil)
+        if let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            imageView.contentMode = .scaleAspectFill
+            imageView.image = chosenImage
+            dismiss(animated: true, completion: nil)
+        } else {
+            
+            dismiss(animated: true, completion: nil)
+            let alertVC = UIAlertController(
+                title: "Photos Only",
+                message: "Sorry, only photos can be added to an entry. Please try again!",
+                preferredStyle: .alert)
+            let okAction = UIAlertAction(
+                title: "OK",
+                style:.default,
+                handler: nil)
+            alertVC.addAction(okAction)
+            present(
+                alertVC,
+                animated: true,
+                completion: nil)
+            
+           }
+     
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
