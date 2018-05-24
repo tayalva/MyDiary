@@ -23,9 +23,6 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     let geoCoder = CLGeocoder()
     var wantsLocation: Bool = false
 
-    
-    
- 
     @IBOutlet weak var addLocationIcon: UIButton!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -39,8 +36,9 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+// setting all the delegate methods
         
-      
         subjectTextField.delegate = self
         photoPicker.delegate = self
         diaryEntry?.delegate = self
@@ -60,6 +58,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     
     override func viewWillAppear(_ animated: Bool) {
 
+// security for core location
         
         if CLLocationManager.authorizationStatus() == .notDetermined {
             locationManager.requestAlwaysAuthorization()
@@ -70,13 +69,14 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         }
     }
 
+// swoops in camera/camera roll view
     @IBAction func imageClicked(_ sender: Any) {
         imageViewerConstraint.constant = 0
         UIView.animate(withDuration: 0.3, animations: {
             self.view.layoutIfNeeded()
         })
     }
-    
+ // dismisses selection view
     @IBAction func imageCancelButton(_ sender: Any) {
         imageViewerConstraint.constant = 400
         UIView.animate(withDuration: 0.2, animations: {
@@ -84,7 +84,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         })
         
     }
-    
+ // allows user to select a photo
     @IBAction func camerRollButton(_ sender: Any) {
         imageViewerConstraint.constant = 400
         UIView.animate(withDuration: 0.2, animations: {
@@ -95,6 +95,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         photoPicker.mediaTypes = UIImagePickerController.availableMediaTypes(for: .savedPhotosAlbum)!
         present(photoPicker, animated: true, completion: nil)
     }
+ // allows user to take a photo, and protects against devices that don't have a camera
     
     @IBAction func cameraButton(_ sender: Any) {
         imageViewerConstraint.constant = 400
@@ -126,6 +127,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         }
         
     }
+  
+// adds the location
     
     @IBAction func addLocationButton(_ sender: Any) {
          wantsLocation = true
@@ -135,6 +138,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
      
         
     }
+// all saving functions are in here
     
     @IBAction func saveButton(_ sender: Any) {
         
@@ -191,12 +195,15 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
 
             }
         }
-        //locationManager.stopUpdatingLocation()
     }
+    
+    
+    
+//sets up some UI elements
     
     func loadInfo() {
         
-    //sets up some UI elements
+
         
         mapView.isHidden = true
         imageView.layer.borderWidth = 1
@@ -245,6 +252,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
             locationLabel.text = "Add location to entry"
         }
     }
+// method to add location as well as calls the geocoder method
     
     func addLocation() {
         locationManager.requestWhenInUseAuthorization()
@@ -285,6 +293,7 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
         mapView.addAnnotation(locationPin)
     }
     
+ // geocoder method that translates coordinates into city and state
     
     func lookUpCurrentLocation(_ placemarks: [CLPlacemark]?, error: Error?) {
         
@@ -310,6 +319,8 @@ class DetailViewController: UIViewController, UITextViewDelegate, MKMapViewDeleg
     }
     
 }
+
+//image picker methods
 
 extension DetailViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     

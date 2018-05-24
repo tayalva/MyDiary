@@ -91,7 +91,7 @@ class MyDiaryTests: XCTestCase {
         
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/YYYY"
-        let stringDate = formatter.string(from: date!)
+       let stringDate = formatter.string(from: date!)
         let entry: Entry
         
         
